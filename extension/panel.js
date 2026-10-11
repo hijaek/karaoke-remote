@@ -285,7 +285,11 @@ async function findMelonCandidates(song) {
     } catch { /* Use the channel search when the API is unavailable. */ }
   }
   let matches = rankedMatches(await searchTJChannel(`${song.title} ${song.artist}`), song);
-  if (!matches.length) matches = rankedMatches(await searchTJChannel(song.title), song);
+  if (!matches.length) {
+    const titleResults = await searchTJChannel(song.title);
+    matches = rankedMatches(titleResults, song);
+    if (!matches.length) matches = titleResults;
+  }
   return matches;
 }
 
@@ -397,7 +401,7 @@ $('api-settings-toggle').addEventListener('click', () => {
 $('save-api-key').addEventListener('click', () => run(async () => {
   await chrome.storage.local.set({ youtubeApiKey: $('api-key').value.trim() });
   $('api-settings-body').hidden = true;
-  $('melon-status').textContent = '자동 예약 설정을 저장했습니다';
+  $('melon-status').textContent = '검색 API 설정을 저장했습니다';
 }));
 chrome.storage.onChanged.addListener(changes => {
   if (changes.karaokeSession) { session = changes.karaokeSession.newValue || emptySession; render(); }

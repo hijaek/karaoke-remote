@@ -75,7 +75,7 @@ YouTube의 [TJ노래방 채널](https://www.youtube.com/@TJ%EB%85%B8%EB%9E%98%EB
 1. **키 변경:** Chrome의 탭 캡처와 AudioWorklet을 연결했습니다. 실제 TJ 영상에서 ±5반음의 음정, 음질, 영상과 소리의 싱크, 다른 재생속도와의 조합을 확인해야 합니다. 배포 전에는 YouTube 관련 이용 조건도 별도로 검토합니다. [Chrome 탭 캡처](https://developer.chrome.com/docs/extensions/reference/api/tabCapture), [SoundTouchJS](https://github.com/cutterbl/SoundTouchJS/tree/master/packages/audio-worklet), [YouTube API 서비스 정책](https://developers.google.com/youtube/terms/developer-policies)
 2. **0.1배속 템포:** YouTube 플레이어는 영상별로 지원하는 재생속도가 다르며, 지원하지 않는 속도 요청은 정확히 적용되지 않을 수 있습니다. `1.1×` 같은 값이 실제 YouTube 페이지에서 적용되는지 검증하고, 디스플레이에는 요청값이 아니라 **실제 적용값**을 보여줍니다. [YouTube IFrame Player API](https://developers.google.com/youtube/iframe_api_reference)
 3. **세션 예약 목록:** YouTube 영상으로 구성된 예약 목록의 순서·취소·스킵이 현재 노래방 세션에서 일관되게 동작하는지 확인합니다.
-4. **멜론 TOP100 자동 예약:** 순위 데이터를 안정적으로 가져오는 방법과 멜론 곡을 TJ노래방 영상에 정확히 대응시키는 방법을 확인합니다. 동명곡·여러 버전·미등록곡은 잘못 예약되지 않아야 합니다. [멜론 TOP100](https://www.melon.com/chart/)
+4. **멜론 TOP100 곡 연결:** 순위 데이터를 안정적으로 가져오는 방법과 멜론 곡을 TJ노래방 영상에 정확히 대응시키는 방법을 확인합니다. 동명곡·여러 버전은 모달에서 사용자가 고르고, 미등록곡은 예약하지 않아야 합니다. [멜론 TOP100](https://www.melon.com/chart/)
 
 ## 개발 순서와 완료 기준
 
