@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "싱 리모콘",
+  "version": "0.2.1",
+  "description": "TJ노래방 YouTube 영상을 위한 세션 예약 리모컨",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "storage", "tabs", "activeTab", "tabCapture", "offscreen"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://www.melon.com/*",
+    "https://www.googleapis.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "side_panel": { "default_path": "panel.html" },
+  "action": { "default_title": "싱 리모콘 열기" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["youtube.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>싱 리모콘</title>
+  <link rel="stylesheet" href="panel.css">
+  <script src="channel-search.js" defer></script>
+  <script src="panel.js" defer></script>
+</head>
+<body>
+  <main class="remote">
+    <header class="remote-header">
+      <div class="brand"><span class="brand-mark">S</span><strong>싱 리모콘</strong></div>
+      <span id="connection-light" class="connection-light" aria-label="연결 상태"></span>
+    </header>
+
+    <section class="lcd-frame" aria-label="노래방 상태창">
+      <div class="lcd">
+        <div class="lcd-metrics">
+          <div><span>음정</span><strong id="key-value">±0</strong></div>
+          <div><span>템포</span><strong id="tempo-value">1.0x</strong></div>
+          <div><span>예약</span><strong id="queue-count">00</strong></div>
+        </div>
+        <div class="lcd-message"><span id="play-icon">■</span><strong id="lcd-line">YouTube에서 TJ노래방 영상을 여세요</strong><span id="time-value">--:--</span></div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="음정과 템포">
+      <div class="control-row"><span>음정</span><button id="key-down" class="rocker left">▼ ♭ 내림</button><button id="key-up" class="rocker right">♯ 올림 ▲</button></div>
+      <div class="control-row"><span>템포</span><button id="tempo-down" class="rocker left">▼ 느리게</button><button id="tempo-up" class="rocker right">빠르게 ▲</button></div>
+      <button id="reset" class="reset-button">원키 · 원템포 (원래대로)</button>
+      <div class="control-note">영상 탭에서 확장 프로그램 아이콘을 누르면 키 조절용 소리가 연결됩니다. ±5반음</div>
+    </section>
+
+    <form id="search-form" class="search-form">
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-query" type="search" placeholder="TJ노래방 채널에서 곡 검색" aria-label="TJ노래방 채널 검색"></label>
+      <button type="submit" class="search-button">검색</button>
+    </form>
+
+    <nav class="tabs" aria-label="목록 종류">
+      <button id="tab-queue" class="tab active" data-tab="queue">예약목록</button>
+      <button id="tab-search" class="tab" data-tab="search">검색결과</button>
+      <button id="tab-melon" class="tab" data-tab="melon">멜론 TOP100</button>
+    </nav>
+
+    <section class="list-frame" aria-label="예약 또는 검색 결과">
+      <div class="list-heading"><span id="list-title">RESERVED</span><span id="list-meta">0곡 대기</span></div>
+      <div id="list-body" class="list-body"></div>
+    </section>
+
+    <footer class="bottom-controls">
+      <button id="cancel-current" class="blue-button">취소</button>
+      <button id="play-pause" class="blue-button">시작</button>
+      <button id="next-song" class="next-button">다음곡</button>
+    </footer>
+  </main>
+
+  <section id="melon-screen" class="melon-screen" hidden aria-label="멜론 TOP100">
+    <header class="melon-header"><button id="melon-back" class="back-button">◀ 리모콘</button><div><strong>멜론 TOP100</strong><small>곡을 누르면 TJ노래방 영상 후보를 보여줍니다</small></div></header>
+    <div id="melon-status" class="melon-lcd" role="status">순위를 불러오는 중입니다</div>
+    <div id="melon-list" class="melon-list"></div>
+    <section id="melon-results" class="melon-results" aria-label="TJ 영상 검색 결과" hidden>
+      <div class="melon-header"><button id="melon-results-back" class="back-button">◀ TOP100</button><div><strong id="melon-results-title">영상 선택</strong><small>부를 TJ 영상을 골라 예약하세요</small></div></div>
+      <div id="melon-results-status" class="melon-lcd" role="status"></div>
+      <div id="melon-results-list" class="melon-list"></div>
+    </section>
+    <div id="api-settings" class="api-settings">
+      <button id="api-settings-toggle" class="text-button">자동 예약 설정</button>
+      <div id="api-settings-body" hidden>
+        <label for="api-key">YouTube 검색 API 키</label>
+        <div class="api-key-row"><input id="api-key" type="password" autocomplete="off" placeholder="API 키 입력"><button id="save-api-key">저장</button></div>
+        <p>키가 없어도 TJ 채널 검색 결과를 이 화면에서 확인하고 예약할 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
